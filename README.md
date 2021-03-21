@@ -10,7 +10,7 @@ https://aws.amazon.com/jp/sqs/
 - AWSアカウント
   - S3バケット
 
-## リソースの作成
+## リソースの作成
 ```
 $ cd terraform
 ```
