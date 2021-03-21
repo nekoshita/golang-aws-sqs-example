@@ -1,7 +1,7 @@
 # golang aws sqs example terraform
 
 
-## リソースの作成
+## リソースの作成
 ```
 $ export BUCKET_NAME="your s3 bukect name tfstate"
 $ export BUCKET_REGION="your s3 bucket region for tfstate
