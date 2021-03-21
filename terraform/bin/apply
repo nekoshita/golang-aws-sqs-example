@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -eu
+
+s3_bucket_name_for_tfstate=${1:?'set S3 Bucket name as first argument'}
+s3_bucket_region_for_tfstate=${2:?'set S3 Bucket region as second argument'}
+
+rm -rf .terraform
+
+# defaul regionを環境変数で指定しないとエラーするのでセットする
+# https://github.com/hashicorp/terraform-provider-aws/issues/9989
+export AWS_DEFAULT_REGION=ap-northeast-1
+
+terraform init -upgrade \
+  -backend-config="bucket=${s3_bucket_name_for_tfstate}" \
+  -backend-config="key=state.tfstate" \
+  -backend-config="region=${s3_bucket_region_for_tfstate}"
+
+terraform refresh
+  
+terraform apply -auto-approve 
